@@ -1,13 +1,14 @@
 {
     "presentation.title1": "my",
     "presentation.title2": "portfolio",
-    "intro.title": "Welcome!",
-    "intro.subtitle": "Enjoy your stay :)",
-    "intro.description": "I'm a computer science graduate from Universidad del Valle de Guatemala, I have a passion for UI/UX design and developing. I also graduated with a specialization in videogames, referring to videogame design and developement, which is my <bold><italics>other</italics></bold> main interest for which I'm the most passionate about.",
-    "intro.description2": "Let's work together and push your site to a next level with beautiful visuals! I'm open minded and very flexible regarding to design, so we can do whatever is required for you to be satisfied!",
-    "interests.title": "My interests include...",
+    "intro.title": "welcome!",
+    "intro.subtitle": "enjoy your stay :)",
+    "intro.description": "i'm a computer science graduate from Universidad del Valle de Guatemala, I have a passion for UI/UX design and developing. I also graduated with a specialization in videogames, referring to videogame design and developement, which is my <bold><italics>other</italics></bold> main interest for which I'm the most passionate about.",
+    "intro.description2": "let's work together and push your site to a next level with beautiful visuals! I'm open minded and very flexible regarding to design, so we can do whatever is required for you to be satisfied!",
+    "interests.title": "My interests include",
     "interests.one": "user experience",
     "interests.two": "game development",
     "interests.three": "web design",
-    "skills.title": "my skills include..."
+    "skills.title": "my skills include",
+    "projects.title": "previous projects"
 }

@@ -2,11 +2,12 @@
     "presentation.title1": "mi",
     "presentation.title2": "portafolio",
     "intro.title": "¡Bienvenido!",
-    "intro.subtitle": "Disfruta tu estadía :)",
-    "intro.description": "Esta es una descripción de muestra de la escena.",
-    "interests.title": "Mis intereses son...",
+    "intro.subtitle": "disfruta tu estadía :)",
+    "intro.description": "ésta es una descripción de muestra de la escena.",
+    "interests.title": "mis intereses son",
     "interests.one": "experiencia de usuario",
     "interests.two": "desarrollo de juegos",
     "interests.three": "diseño web",
-    "skills.title": "mis habilidades son..."
+    "skills.title": "mis habilidades son",
+    "projects.title": "proyectos anteriores"
 }

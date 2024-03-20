@@ -6,18 +6,20 @@ import Content from "../Content";
 export default function SceneHolder() {
     return(
         <>
-            <Canvas>
-                <ambientLight />
-                <pointLight position={[10, 10, 10]}/>
-                <PerspectiveCamera 
-                    makeDefault 
-                    position={[0, 0, 2]}
-                />
-                <Suspense>
-                    <Content/>
-                </Suspense>
-            </Canvas>
-            <Loader/>
+            <div id="container" >
+                <Canvas>
+                    <ambientLight />
+                    <pointLight position={[10, 10, 10]} />
+                    <PerspectiveCamera 
+                        makeDefault 
+                        position={[0, 0, 2]}
+                    />
+                    <Suspense>
+                        <Content/>
+                    </Suspense>
+                </Canvas>
+                <Loader/>
+            </div>
         </>
     );
 }

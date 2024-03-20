@@ -1,4 +1,4 @@
-import './header.scss'
+import './header.css'
 
 const Wave = (props) => (
     <svg viewBox="0 0 100 3.6" {...props} id="wave-svg" style={{ zIndex: 5 }}>

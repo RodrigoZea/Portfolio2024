@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@700&display=swap');
+
+#header {
+    z-index: 5;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    background-color: rgb(86, 34, 226);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 1.5em;
+    padding: 0.8em;
+    user-select: none;
+    height: auto;
+    flex-shrink: 0
+}
+
+#icons-container {
+    display: flex; 
+    align-items: center; 
+    white-space: nowrap; 
+}
+
+a {
+    color: white;
+}
+
+#name-container {
+    display: inherit;
+    color: white;
+    font-family: 'Golos Text', sans-serif;
+    font-weight: 600;
+}
+#name {
+    display: inherit;
+}
+
+#dev {
+    margin-left: 0.3em;
+    transition: all 0.05s;
+}
+
+
+#l0, #l8, #l11 {
+    transition: 0.5s;
+}
+.animated {
+    transition: 0.2s;
+}
+
+#name:hover > #l8 {
+    transform: translate(-3em);
+    transition: all 0.05s;
+}
+#name:hover > .animated {
+    -webkit-transform: scale(1, 0);
+    -moz-transform: scale(1, 0);
+    -o-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
+    transform: scale(1, 0);
+    transition: all 0.05s;
+}
+#name:hover > #dev {
+    transform: translate(-4.1em);
+    transition: all 0.05s;
+}
+#name:hover > span {
+    pointer-events: none;
+}
+
+.header-icon {
+    transition: all 0.1s;
+    &:hover {
+        transform: scale(1.6);
+        transition: all 0.15s;
+    }
+}
+
+#select-box {
+    background: transparent;
+    color: white;
+    font-family: 'Golos Text', sans-serif;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-size: 0.7em;
+    margin-left: 0.6em;
+}
+
+
+.icon-toggle {
+    cursor: pointer;
+}
+.icon-wrapper {
+    transition: opacity 0.5s;
+    transform: translateY(-0.1em);
+
+    margin-left: 0.2em;
+}
+
+.icon-wrapper {
+    opacity: 1;
+}
+
+.icon-wrapper.fade-out  {
+    opacity: 0;
+}
+
+#wave-svg {
+    position: fixed;
+    top: 4em;
+
+    width: 100%; 
+    height: auto; 
+  }
+
+@media only screen and (max-width: 768px) {
+    #header {
+        z-index: 5;
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+        color: white;
+        background-color: rgb(86, 34, 226);
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Golos Text', sans-serif;
+        font-size: 1em;
+        padding: 0.8em;
+        user-select: none;
+        height: auto;
+        flex-shrink: 0;
+    }
+    #wave-svg {
+        top: 3em; 
+    }
+}
