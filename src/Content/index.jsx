@@ -25,28 +25,28 @@ export default function Content(){
         >
             <Scroll>
                 <group>
-                    <mesh position={[0, -8.4, -0.5]} rotation={[0, 0, 0]} scale={1}>
+                    <mesh position={[0, -8.01, -0.5]} rotation={[0, 0, 0]} scale={1}>
                         <planeGeometry args={[10, 15, 1, 1]} />
                         <meshStandardMaterial color={new Color("#101457")}>
                         </meshStandardMaterial>
                     </mesh>
 
                     {/* Everything related to start screen */}
-                    <group scale={scalingFactor}>
+                    <group scale={isMobile ? scalingFactor*0.8: scalingFactor}>
                         <MascotLookAt 
                             position={
                                 isMobile ? [-1, 1, 0]
                                 : [-1.8, 1, 0]
                             } 
-                            y={-2.3} 
+                            y={isMobile ? -1.8:-1.5} 
                         />
                     </group>
 
                     <group>
                         <BackgroundWater
                             position={
-                                isMobile ? [0, -1, 0]
-                                : [0, -1, 0]
+                                isMobile ? [0, -0.61, 0]
+                                : [0, -0.6, 0]
                             }
                         />
                     </group>
@@ -54,10 +54,10 @@ export default function Content(){
                     {/* About me */}
                     <group>
                         <WavingMascot 
-                            scale={scalingFactor}
+                            scale={isMobile ? scalingFactor*0.8 : scalingFactor}
                             position={
-                                isMobile ? [0, -viewport.height*2.15, 0]
-                                : [-viewport.width*0.2, -viewport.height*1.6, 0]
+                                isMobile ? [0, -viewport.height*1.25, 0]
+                                : [-viewport.width*0.2, -viewport.height*1, 0]
                             }
                         />
                     </group>
@@ -65,12 +65,12 @@ export default function Content(){
                     {/* Interests */}
                     <group
                         scale={
-                            isMobile ? scalingFactor*1.2
+                            isMobile ? scalingFactor*0.8
                             : scalingFactor*1.5
                         }
                         position={
-                            isMobile ? [0, -5.4+(scalingFactor/viewport.width), 0]
-                            : [0, -viewport.height*2.7, 0]
+                            isMobile ? [0, -viewport.height*2+0.55, 0]
+                            : [0, -viewport.height*2, 0]
                         }
                     >
                         <group                                    
@@ -112,10 +112,12 @@ export default function Content(){
 
                     {/* Previous works */}
                     <group 
-                        scale={scalingFactor*2}
+                        scale={
+                            scalingFactor*2
+                        }
                         position={
-                            isMobile ? [0, -8.5, 0]
-                            : [0, -8.8, 0]
+                            isMobile ? [0, -viewport.height*4, 0]
+                            : [0, -viewport.height*4, 0]
                         }
                     >
                         <PreviousWorks />
@@ -128,7 +130,7 @@ export default function Content(){
                             : scalingFactor}
                         position={
                             isMobile ? [0, -10, -0.3]
-                            : [0, -11, -0.8]
+                            : [0, -viewport.height*5.3, -0.8]
                         }  
                     >      
                         <CharacterContact />                

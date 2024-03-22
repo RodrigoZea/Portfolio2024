@@ -10,5 +10,7 @@
     "interests.two": "game development",
     "interests.three": "web design",
     "skills.title": "my skills include",
-    "projects.title": "previous projects"
+    "projects.title": "previous projects",
+    "languages.title": "fluent languages:",
+    "languages.list": "english, spanish"
 }

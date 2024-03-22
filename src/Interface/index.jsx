@@ -1,16 +1,18 @@
 import { Trans, useTranslation } from "react-i18next";
 import { motion } from 'framer-motion';
 import Delayed from "./Delayed";
-
+import { currentProjectAtom } from "../PreviousWorks";
+import { useAtom } from "jotai";
 
 const Section = (props) => {
     const { children } = props;
-
+    // border-2 border-rose-500 add to class to debug
     return (
         <section className="
-            h-screen w-screen p-8 max-w-screen-2xl
-            flex flex-col items-start justify-center
+            h-screen w-screen min-h-screen pr-8
+            flex flex-col items-start justify-start
             font-golos font-semibold text-purple-main text-5xl xl:text-7xl 
+            select-none 
             "
         >
             {children}
@@ -21,31 +23,33 @@ const Section = (props) => {
 const WelcomeSection = (props) => {
     const { t } = useTranslation();
     return(
-        <Delayed>
-            <div
-                className="
-                    h-screen w-screen
-                    flex flex-col items-center justify-center
-                    select-none 
-                    
-                "
-            >
-                <a
+        <Section>
+            <Delayed>
+                <div
                     className="
-                    font-golos text-5xl xl:text-7xl  font-semibold text-purple-main
+                        h-screen w-screen
+                        flex flex-col items-center justify-center
+                        select-none 
+                        
                     "
                 >
-                    {t('presentation.title1')}
-                </a>       
-                <a
-                    className="
-                    font-golos text-5xl xl:text-7xl font-semibold text-purple-main mb-20
-                    "
-                >
-                    {t('presentation.title2')}
-                </a>        
-            </div>
-        </Delayed>
+                    <a
+                        className="
+                        font-golos text-5xl xl:text-7xl  font-semibold text-purple-main
+                        "
+                    >
+                        {t('presentation.title1')}
+                    </a>       
+                    <a
+                        className="
+                        font-golos text-5xl xl:text-7xl font-semibold text-purple-main mb-20
+                        "
+                    >
+                        {t('presentation.title2')}
+                    </a>        
+                </div>
+            </Delayed>
+        </Section>
     )
 }
 
@@ -53,66 +57,161 @@ const AboutSection = () => {
     const { t } = useTranslation();
     
     return(
-        <div className="
-            w-6/12 max-w-2xl
-            flex flex-col items-start justify-center gap-0
-            mt-[52rem] ml-[50vw]
-            font-golos font-semibold select-none 
-            "
-        >
-            <h1 className="text-purple-subtitle-dark text-5xl xl:text-6xl">
-                {t('intro.title').toLowerCase()}
-            </h1>
-            <h1 className="text-purple-main text-4xl xl:text-5xl">
-                {t('intro.subtitle').toLowerCase()}
-            </h1>
-
-            <motion.div 
-                className="
-                bg-yellow-200 w-full h-2
-                rounded-full
-                my-6
+        <Section>
+            <div className="
+                w-6/12 max-w-xl h-full
+                flex flex-col items-start justify-center gap-0
+                ml-[50vw] px-8
+                font-golos font-semibold select-none 
                 "
-                initial={{
-                    opacity: 0,
-                    x: -100
-                }}
-                whileInView={{
-                    opacity: 1,
-                    x: 0
-                }}
-                transition={{
-                    duration: 1,
-                    delay: 0.6,
-                }}
-            />
-
-            <motion.div 
-                className="
-                    text-sea-white text-sm xl:text-lg font-light
-                "
-                initial={{
-                    opacity: 0,
-                    y: 25,
-                }}
-                whileInView={{
-                    opacity: 1,
-                    y: 0
-                }}
-                transition={{
-                    duration: 1,
-                    delay: 0.6,
-                }}
             >
-                <div className="leading-6">
-                    <Trans components={{ italics: <i />, bold: <b /> }}>
-                        <p>{t('intro.description')}</p>
-                    </Trans>
-                    
-                    <p className="mt-4">{t('intro.description2')}</p>
-                </div>
-            </motion.div>
-        </div>
+                <h1 className="text-purple-subtitle-dark text-5xl xl:text-6xl">
+                    {t('intro.title').toLowerCase()}
+                </h1>
+                <motion.h1 
+                    className="text-purple-main text-4xl xl:text-5xl"
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: 1
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.2,
+                    }}
+                >
+                    {t('intro.subtitle').toLowerCase()}
+                </motion.h1>
+
+                <motion.div 
+                    className="
+                    bg-yellow-200 w-full h-2
+                    rounded-full
+                    my-6
+                    "
+                    initial={{
+                        opacity: 0,
+                        x: -100
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        x: 0
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.6,
+                    }}
+                />
+
+                <motion.div 
+                    className="
+                        text-sea-white text-sm xl:text-lg font-light
+                    "
+                    initial={{
+                        opacity: 0,
+                        y: 25,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.6,
+                    }}
+                >
+                    <div className="leading-6">
+                        <Trans components={{ italics: <i />, bold: <b /> }}>
+                            <p>{t('intro.description')}</p>
+                        </Trans>
+                        
+                        <p className="mt-4">{t('intro.description2')}</p>
+                    </div>
+                </motion.div>
+            </div>
+        </Section>
+    )
+}
+
+const AboutSectionMobile = () => {
+    const { t } = useTranslation();
+    
+    return(
+        <Section>
+            <div className="
+                w-full h-full
+                flex flex-col items-start justify-start gap-0 mt-16
+                px-8
+                font-golos font-semibold select-none 
+                "
+            >
+                <h1 className="text-purple-subtitle-dark text-5xl xl:text-6xl">
+                    {t('intro.title').toLowerCase()}
+                </h1>
+                <motion.h1 
+                    className="text-purple-main text-4xl xl:text-5xl"
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: 1
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.2,
+                    }}
+                >
+                    {t('intro.subtitle').toLowerCase()}
+                </motion.h1>
+
+                <motion.div 
+                    className="
+                    bg-yellow-200 w-full h-2
+                    rounded-full
+                    my-6
+                    "
+                    initial={{
+                        opacity: 0,
+                        x: -100
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        x: 0
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.6,
+                    }}
+                />
+
+                <motion.div 
+                    className="
+                        text-sea-white text-sm xl:text-lg font-light
+                    "
+                    initial={{
+                        opacity: 0,
+                        y: 25,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.6,
+                    }}
+                >
+                    <div className="leading-6">
+                        <Trans components={{ italics: <i />, bold: <b /> }}>
+                            <p>{t('intro.description')}</p>
+                        </Trans>
+                        
+                        <p className="mt-4">{t('intro.description2')}</p>
+                    </div>
+                </motion.div>
+            </div>
+        </Section>
     )
 }
 
@@ -125,32 +224,159 @@ const InterestsSection = () => {
     )
 }
 
+const skills = [
+    {
+        title: "html and css",
+        level: "100"
+    },
+    {
+        title: "sql",
+        level: "80"
+    },
+    {
+        title: "javascript",
+        level: "70"
+    },
+    {
+        title: "react",
+        level: "70"
+    },
+    {
+        title: "gdscript",
+        level: "60"
+    }
+]
+
+
 const SkillsSection = () => {
     const { t } = useTranslation();
     return(
-        <Section>
-            <h1>{t('skills.title').toLowerCase()}</h1>
+        <Section>   
+            <motion.div className="w-full h-full" whileInView={"visible"}> 
+                <h1>{t('skills.title').toLowerCase()}</h1>            
+                <div className="mt-14 space-y-4 pr-8">
+                    {skills.map((skill, index) => (
+                        <div key={index}>
+   
+                            <motion.div
+                                className="flex flex-row items-center justify-between gap-0 text-3xl font-bold text-purple-subtitle-dark"
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                variants={{
+                                    visible: {
+                                        opacity: 1,
+                                        transition: {
+                                            duration: 1,
+                                            delay: 1 + index * 0.2
+                                        }
+                                    }
+                                }}
+                            >
+                                <h3>{skill.title}</h3>
+                                <h3>{skill.level}%</h3>
+                            </motion.div>
+
+                            <div className="h-5 w-full bg-purple-dark rounded-full mt-2">
+                                <motion.div
+                                    className="h-full bg-yellow-200 rounded-full"
+                                    style={{ width: `${skill.level}%`}}
+                                    initial={{
+                                        scaleX: 0,
+                                        originX: 0,
+                                    }}
+                                    variants={{
+                                        visible: {
+                                            scaleX: 1,
+                                            transition: {
+                                                duration: 1,
+                                                delay: 1 + index*0.2
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="mt-8 flex flex-row space-x-4">
+                    <h3 className="text-4xl">
+                        {t("languages.title").toLowerCase()}
+                    </h3>
+                    <h3 className="text-4xl text-yellow-200">
+                        {t("languages.list").toLowerCase()}
+                    </h3>
+                </div>  
+            </motion.div>
         </Section>
     )
 }
 
 const ProjectsSection = () => {
     const { t } = useTranslation();
+    const projectsLength = 6;
+    const [currentProject, setCurrentProject] = useAtom(currentProjectAtom)
+
+    const nextProject = () => {
+        setCurrentProject((currentProject+1) % projectsLength)
+    }
+
+    const previousProject = () => {
+        setCurrentProject((currentProject-1+projectsLength) % projectsLength)
+    }
+
+
     return(
         <Section>
-            <h1>{t('projects.title').toLowerCase()}</h1>
+            <div className="
+                w-full h-full xl:pr-8
+                flex flex-col justify-between 
+            ">
+                <h1>{t('projects.title').toLowerCase()}</h1>
+                <div className="flex w-full gap-8 items-center justify-between xl:px-8 text-3xl xl:text-6xl">
+                    <button
+                        className="hover:text-indigo-600 transition-colors flex flex-row items-center gap-8"
+                        onClick={previousProject}
+                    >
+                        <div>
+                            {'<'}
+                        </div>
+                        <div className="mb-4">previous</div>
+                    </button>
+                    <button
+                        className="hover:text-indigo-600 transition-colors flex flex-row items-center gap-8"
+                        onClick={nextProject}
+                    >                       
+                        <div className="mb-4">next</div>
+                        <div>
+                            {'>'}
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </Section>
+    )
+}
+
+const ContactSection = () => {
+    return(
+        <Section>
+
         </Section>
     )
 }
 
 export default function Interface(){
+    const isMobile = window.innerWidth < 768;
+
     return(
         <div className="flex flex-col w-screen">
             <WelcomeSection />
-            <AboutSection />
+            {isMobile ? <AboutSectionMobile/> :<AboutSection />}
             <InterestsSection />
             <SkillsSection />
-            <ProjectsSection />               
+            <ProjectsSection />         
+            <ContactSection />       
         </div>
     )
 }

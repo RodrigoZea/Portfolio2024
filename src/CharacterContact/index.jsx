@@ -29,11 +29,11 @@ export default function Model(props) {
  
   useFrame(() => {
  
-    const characterVisible = scroll.visible(5/8, 2/8)
-    if (characterVisible) {
-      group.current.rotation.y = ((scroll.offset * 4.1 *Math.PI*1)+ initialRotation)
-      group.current.position.set(-scroll.offset*1.5, 0, scroll.offset*2.5)
-    }
+
+
+    group.current.rotation.y = ((scroll.offset * 4.1 *Math.PI*1)+ initialRotation)
+    group.current.position.set(-scroll.offset*1.5, 0, scroll.offset*2.5)
+
 
   })
  

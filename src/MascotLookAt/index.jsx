@@ -35,7 +35,7 @@ export default function MascotLookAt(props) {
                 () => setStartAnimation(true)
             }
         >
-            <CharacterFloating rotation={[0, radToDeg(10), 0]}  />
+            <CharacterFloating rotation={[0, radToDeg(10), 0]} scale={0.8} />
         </motion.mesh>
     );
 }

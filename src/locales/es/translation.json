@@ -9,5 +9,7 @@
     "interests.two": "desarrollo de juegos",
     "interests.three": "diseño web",
     "skills.title": "mis habilidades son",
-    "projects.title": "proyectos anteriores"
+    "projects.title": "proyectos anteriores",
+    "languages.title": "idiomas:",
+    "languages.list": "español, inglés"
 }
