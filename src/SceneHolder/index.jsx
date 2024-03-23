@@ -13,6 +13,7 @@ export default function SceneHolder() {
                     <PerspectiveCamera 
                         makeDefault 
                         position={[0, 0, 2]}
+                        fov={42}
                     />
                     <Suspense>
                         <Content/>

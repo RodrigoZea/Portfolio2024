@@ -9,7 +9,7 @@ const Section = (props) => {
     // border-2 border-rose-500 add to class to debug
     return (
         <section className="
-            h-screen w-screen min-h-screen pr-8
+            h-screen w-screen min-h-screen px-4 xl:px-16
             flex flex-col items-start justify-start
             font-golos font-semibold text-purple-main text-3xl xl:text-7xl 
             select-none 
@@ -61,7 +61,7 @@ const AboutSection = () => {
             <div className="
                 w-6/12 h-full max-w-xl max-h-max
                 flex flex-col items-start justify-center gap-0
-                ml-[50vw] px-8
+                ml-[50vw] mb-12 px-8
                 font-golos font-semibold select-none 
                 "
             >
@@ -332,7 +332,7 @@ const ProjectsSection = () => {
     return(
         <Section>
             <div className="
-                w-full h-full xl:pr-8
+                w-full h-full pr-8 py-48
                 flex flex-col justify-between 
             ">
                 <h1>{t('projects.title').toLowerCase()}</h1>

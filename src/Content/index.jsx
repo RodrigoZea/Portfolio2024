@@ -13,7 +13,7 @@ import CharacterContact from "../CharacterContact";
 
 export default function Content(){
     const { t } = useTranslation();
-    const scalingFactor = Math.min(Math.max(window.innerWidth / 1300, 0.3), 0.6);
+    const scalingFactor = Math.min(Math.max(window.innerWidth / 1300, 0.35), 0.5);
     const isMobile = window.innerWidth < 768;
     const { viewport } = useThree()
 
@@ -133,7 +133,7 @@ export default function Content(){
                             ? scalingFactor*0.7
                             : scalingFactor}
                         position={
-                            isMobile ? [0, -10, -0.3]
+                            isMobile ? [0, -viewport.height*4.9, -0.3]
                             : [0, -viewport.height*5.3, -0.8]
                         }  
                     >      
