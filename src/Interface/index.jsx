@@ -11,7 +11,7 @@ const Section = (props) => {
         <section className="
             h-screen w-screen min-h-screen pr-8
             flex flex-col items-start justify-start
-            font-golos font-semibold text-purple-main text-5xl xl:text-7xl 
+            font-golos font-semibold text-purple-main text-3xl xl:text-7xl 
             select-none 
             "
         >
@@ -59,7 +59,7 @@ const AboutSection = () => {
     return(
         <Section>
             <div className="
-                w-6/12 max-w-xl h-full
+                w-6/12 h-full max-w-xl max-h-max
                 flex flex-col items-start justify-center gap-0
                 ml-[50vw] px-8
                 font-golos font-semibold select-none 
@@ -140,17 +140,17 @@ const AboutSectionMobile = () => {
     return(
         <Section>
             <div className="
-                w-full h-full
-                flex flex-col items-start justify-start gap-0 mt-16
-                px-8
+                w-full h-full max-h-70
+                flex flex-col items-start justify-start gap-0 mb-4
+                px-4 
                 font-golos font-semibold select-none 
                 "
             >
-                <h1 className="text-purple-subtitle-dark text-5xl xl:text-6xl">
+                <h1 className="text-purple-subtitle-dark text-4xl xl:text-6xl">
                     {t('intro.title').toLowerCase()}
                 </h1>
                 <motion.h1 
-                    className="text-purple-main text-4xl xl:text-5xl"
+                    className="text-purple-main text-3xl xl:text-5xl"
                     initial={{
                         opacity: 0,
                     }}
@@ -169,7 +169,7 @@ const AboutSectionMobile = () => {
                     className="
                     bg-yellow-200 w-full h-2
                     rounded-full
-                    my-6
+                    my-3
                     "
                     initial={{
                         opacity: 0,
@@ -187,7 +187,7 @@ const AboutSectionMobile = () => {
 
                 <motion.div 
                     className="
-                        text-sea-white text-sm xl:text-lg font-light
+                        text-sea-white text-xs xl:text-lg font-light
                     "
                     initial={{
                         opacity: 0,
@@ -202,7 +202,7 @@ const AboutSectionMobile = () => {
                         delay: 0.6,
                     }}
                 >
-                    <div className="leading-6">
+                    <div className="leading-5">
                         <Trans components={{ italics: <i />, bold: <b /> }}>
                             <p>{t('intro.description')}</p>
                         </Trans>
@@ -259,7 +259,9 @@ const SkillsSection = () => {
                         <div key={index}>
    
                             <motion.div
-                                className="flex flex-row items-center justify-between gap-0 text-3xl font-bold text-purple-subtitle-dark"
+                                className="flex flex-row items-center justify-between gap-0 
+                                        text-xl xl:text-3xl 
+                                        font-bold text-purple-subtitle-dark"
                                 initial={{
                                     opacity: 0,
                                 }}
@@ -277,7 +279,7 @@ const SkillsSection = () => {
                                 <h3>{skill.level}%</h3>
                             </motion.div>
 
-                            <div className="h-5 w-full bg-purple-dark rounded-full mt-2">
+                            <div className="h-2 xl:h-5 w-full bg-purple-dark rounded-full mt-2">
                                 <motion.div
                                     className="h-full bg-yellow-200 rounded-full"
                                     style={{ width: `${skill.level}%`}}
@@ -299,11 +301,12 @@ const SkillsSection = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-8 flex flex-row space-x-4">
-                    <h3 className="text-4xl">
+                <div className="mt-8 flex flex-row text-lg space-x-2
+                xl:space-x-4 xl:text-4xl">
+                    <h3>
                         {t("languages.title").toLowerCase()}
                     </h3>
-                    <h3 className="text-4xl text-yellow-200">
+                    <h3 className="text-yellow-200">
                         {t("languages.list").toLowerCase()}
                     </h3>
                 </div>  
@@ -359,9 +362,10 @@ const ProjectsSection = () => {
 }
 
 const ContactSection = () => {
+    const { t } = useTranslation();
     return(
         <Section>
-
+            <h1>{t('contact.title').toLowerCase()}</h1>
         </Section>
     )
 }

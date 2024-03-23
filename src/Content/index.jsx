@@ -25,7 +25,9 @@ export default function Content(){
         >
             <Scroll>
                 <group>
-                    <mesh position={[0, -8.01, -0.5]} rotation={[0, 0, 0]} scale={1}>
+                    <mesh position={
+                        isMobile ? [0, -7.8, -0.5] : [0, -8.01, -0.5]
+                        } rotation={[0, 0, 0]} scale={1}>
                         <planeGeometry args={[10, 15, 1, 1]} />
                         <meshStandardMaterial color={new Color("#101457")}>
                         </meshStandardMaterial>
@@ -42,12 +44,14 @@ export default function Content(){
                         />
                     </group>
 
-                    <group>
+                    <group scale={isMobile ? scalingFactor*0.8: scalingFactor*1.7}>
                         <BackgroundWater
                             position={
-                                isMobile ? [0, -0.61, 0]
+                                isMobile ? [0, -1, 0]
                                 : [0, -0.6, 0]
                             }
+                            ampA = {isMobile ? 1.0 : 3.0}
+                            ampB = {isMobile ? 1.0 : 4.0}
                         />
                     </group>
 
@@ -56,7 +60,7 @@ export default function Content(){
                         <WavingMascot 
                             scale={isMobile ? scalingFactor*0.8 : scalingFactor}
                             position={
-                                isMobile ? [0, -viewport.height*1.25, 0]
+                                isMobile ? [0, -viewport.height*1.15, 0]
                                 : [-viewport.width*0.2, -viewport.height*1, 0]
                             }
                         />

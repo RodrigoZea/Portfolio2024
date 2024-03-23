@@ -20,6 +20,8 @@ const fragmentShader = `
 const vertexShader = ` 
     // we are receiving a uniform from our component
     uniform float u_time;
+    uniform float u_ampA;
+    uniform float u_ampB;
     // we use a varying to send info between vertex and fragment shaders
     varying float vZ;
     varying float vLocalY;
@@ -29,8 +31,8 @@ const vertexShader = `
 
         modelPosition.x *= 5.0;
 
-        modelPosition.y += sin(modelPosition.x * 3.0 + u_time * 2.0) * 0.1;
-        modelPosition.y += sin(modelPosition.z * 4.0 + u_time * 3.0) * 0.1;
+        modelPosition.y += sin(modelPosition.x * u_ampA + u_time * 2.0) * 0.07;
+        modelPosition.y += sin(modelPosition.z * u_ampB + u_time * 3.0) * 0.07;
 
         vZ = modelPosition.y;
         vLocalY = position.y; // Store the local Y position for color calculation
@@ -46,6 +48,7 @@ const vertexShader = `
 
 export default function BackgroundWater(props) {
     const mesh = useRef();
+    const { ampA, ampB } = props;
 
     const uniforms = useMemo(
         () => ({
@@ -53,7 +56,9 @@ export default function BackgroundWater(props) {
             value: 0.0,
           },
           u_colorA: { value: new Color("#8d77f2") },
-          u_colorB: { value: new Color("#b486ff") }
+          u_colorB: { value: new Color("#b486ff") },
+          u_ampA: { value: ampA },
+          u_ampB: { value: ampB }
         }), []
       );
     useFrame(({clock}) => 
