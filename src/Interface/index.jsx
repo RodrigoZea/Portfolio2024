@@ -142,7 +142,7 @@ const AboutSectionMobile = () => {
             <div className="
                 w-full h-full max-h-70
                 flex flex-col items-start justify-start gap-0 mb-4
-                px-4 
+                pr-8
                 font-golos font-semibold select-none 
                 "
             >
@@ -301,7 +301,7 @@ const SkillsSection = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-8 flex flex-row text-lg space-x-2
+                <div className="mt-8 flex flex-row text-sm space-x-2
                 xl:space-x-4 xl:text-4xl">
                     <h3>
                         {t("languages.title").toLowerCase()}
@@ -332,25 +332,25 @@ const ProjectsSection = () => {
     return(
         <Section>
             <div className="
-                w-full h-full pr-8 py-48
+                w-full h-full py-48 xl:py-0
                 flex flex-col justify-between 
             ">
                 <h1>{t('projects.title').toLowerCase()}</h1>
-                <div className="flex w-full gap-8 items-center justify-between xl:px-8 text-3xl xl:text-6xl">
+                <div className="flex w-full gap-8 items-center justify-between xl:px-8 text-2xl xl:text-6xl pr-8">
                     <button
-                        className="hover:text-indigo-600 transition-colors flex flex-row items-center gap-8"
+                        className="hover:text-indigo-600 transition-colors flex flex-row items-center align-center gap-8"
                         onClick={previousProject}
                     >
                         <div>
                             {'<'}
                         </div>
-                        <div className="mb-4">previous</div>
+                        <div className="xl:mb-4 mb-[5px]">previous</div>
                     </button>
                     <button
-                        className="hover:text-indigo-600 transition-colors flex flex-row items-center gap-8"
+                        className="hover:text-indigo-600 transition-colors flex flex-row items-center align-center gap-8"
                         onClick={nextProject}
                     >                       
-                        <div className="mb-4">next</div>
+                        <div className="xl:mb-4 mb-[5px]">next</div>
                         <div>
                             {'>'}
                         </div>
