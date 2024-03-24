@@ -60,7 +60,7 @@ export default function Content(){
                         <WavingMascot 
                             scale={isMobile ? scalingFactor*0.7 : scalingFactor}
                             position={
-                                isMobile ? [0, -viewport.height*1.2, 0]
+                                isMobile ? [0, -viewport.height*1.3, 0]
                                 : [-viewport.width*0.2, -viewport.height*1, 0]
                             }
                         />
@@ -73,7 +73,7 @@ export default function Content(){
                             : scalingFactor*1.5
                         }
                         position={
-                            isMobile ? [0, -viewport.height*1.75, 0]
+                            isMobile ? [0, -viewport.height*1.83, 0]
                             : [0, -viewport.height*2, 0]
                         }
                     >
@@ -117,7 +117,7 @@ export default function Content(){
                     {/* Previous works */}
                     <group 
                         scale={
-                            scalingFactor*2
+                            isMobile ? scalingFactor*1.5 : scalingFactor*2
                         }
                         position={
                             isMobile ? [0, -viewport.height*4, 0]
