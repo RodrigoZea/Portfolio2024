@@ -20,7 +20,7 @@ export default function Content(){
     return(
         <ScrollControls
             damping={0.2}
-            pages={7}
+            pages={6}
             style={{ left: '20px' }}
         >
             <Scroll>
@@ -58,9 +58,9 @@ export default function Content(){
                     {/* About me */}
                     <group>
                         <WavingMascot 
-                            scale={isMobile ? scalingFactor*0.8 : scalingFactor}
+                            scale={isMobile ? scalingFactor*0.7 : scalingFactor}
                             position={
-                                isMobile ? [0, -viewport.height*1.15, 0]
+                                isMobile ? [0, -viewport.height*1.2, 0]
                                 : [-viewport.width*0.2, -viewport.height*1, 0]
                             }
                         />
@@ -73,7 +73,7 @@ export default function Content(){
                             : scalingFactor*1.5
                         }
                         position={
-                            isMobile ? [0, -viewport.height*2+0.55, 0]
+                            isMobile ? [0, -viewport.height*1.75, 0]
                             : [0, -viewport.height*2, 0]
                         }
                     >
