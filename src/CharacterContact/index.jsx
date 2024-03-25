@@ -8,7 +8,7 @@ import { useFrame, useGraph } from "@react-three/fiber";
 import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
  
 export default function Model(props) {
-  const { animation } = props;
+  const { animation, initialRot } = props;
   const group = useRef();
   const { scene, materials } = useGLTF("./models/mascotFromMixamo.glb");
   const copiedCharacter = useMemo(() => SkeletonUtils.clone(scene), [scene])

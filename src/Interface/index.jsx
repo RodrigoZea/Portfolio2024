@@ -9,7 +9,7 @@ const Section = (props) => {
     // border-2 border-rose-500 add to class to debug
     return (
         <section className="
-            h-screen w-screen min-h-screen px-4 xl:px-16
+            h-screen w-screen min-h-screen xl:px-16
             flex flex-col items-start justify-start
             font-golos font-semibold text-purple-main text-3xl xl:text-7xl 
             select-none 
