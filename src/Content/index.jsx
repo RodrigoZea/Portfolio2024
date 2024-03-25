@@ -73,7 +73,7 @@ export default function Content(){
                             : scalingFactor*1.5
                         }
                         position={
-                            isMobile ? [0, -viewport.height*1.83, 0]
+                            isMobile ? [0, -viewport.height*2, 0]
                             : [0, -viewport.height*2, 0]
                         }
                     >
@@ -120,7 +120,7 @@ export default function Content(){
                             isMobile ? scalingFactor*1.5 : scalingFactor*2
                         }
                         position={
-                            isMobile ? [0, -viewport.height*4, 0]
+                            isMobile ? [0, -viewport.height*4.5, 0]
                             : [0, -viewport.height*4, 0]
                         }
                     >
