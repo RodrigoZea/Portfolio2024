@@ -3,5 +3,12 @@ html, body, #root, #container {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.bg-home {
   background-color: #c4e1f5;
+}
+
+.bg-about {
+  background-color: #f5e1c4;
 }

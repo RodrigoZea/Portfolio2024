@@ -3,14 +3,18 @@
     "presentation.title2": "portafolio",
     "intro.title": "¡Bienvenido!",
     "intro.subtitle": "disfruta tu estadía :)",
-    "intro.description": "ésta es una descripción de muestra de la escena.",
+    "intro.description": "soy un graduado en ciencias de la computación de la Universidad del Valle de Guatemala, actualmente pestudiando una Maestría en Ciencias de la Computación en Georgia Tech. Tengo una pasión por el diseño UI/UX y el desarrollo. También me gradué con una especialización en videojuegos, refiriéndome al diseño y desarrollo de videojuegos, que es mi <bold><italics>otra</italics></bold> principal interés por el cual soy más apasionado.",
     "interests.title": "mis intereses son",
-    "interests.one": "experiencia de usuario",
+    "interests.one": "desarrollo frontend",
     "interests.two": "desarrollo de juegos",
     "interests.three": "diseño web",
     "skills.title": "mis habilidades son",
     "projects.title": "proyectos anteriores",
     "languages.title": "idiomas:",
     "languages.list": "español, inglés",
-    "contact.title": "trabajemos juntos!"
+    "contact.title": "trabajemos juntos!",
+    "contact.form.email": "ingresa tu correo",
+    "contact.form.subject": "ingresa un asunto",
+    "contact.form.message": "ingresa tu mensaje",
+    "contact.form.send": "enviar"
 }

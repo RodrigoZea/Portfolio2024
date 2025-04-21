@@ -15,27 +15,15 @@ export default function Model(props) {
   const {nodes} = useGraph(copiedCharacter);
  
   const { animations: thoughtAnimation } = useFBX("./animations/Thoughtful.fbx");
-
-  const initialRotation = Math.PI; 
  
   thoughtAnimation[0].name = "Thought";
 
   const { actions } = useAnimations(thoughtAnimation, group)
-  const scroll = useScroll()
  
   useEffect(() => {
     actions["Thought"].reset().play();
   }, [])
  
-  useFrame(() => {
- 
-
-
-    group.current.rotation.y = ((scroll.offset * 4.1 *Math.PI*1)+ initialRotation)
-    group.current.position.set(-scroll.offset*1.5, 0, scroll.offset*2.5)
-
-
-  })
  
   return (
     <group ref={group} {...props} dispose={null}>
