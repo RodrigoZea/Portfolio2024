@@ -15,6 +15,7 @@ export default {
         'purple-main': '#5622e2',
         'purple-dark': '#1c0852',
         'purple-main-dark': "#a287ec",
+        'purple-light': "#282c69",
         'purple-subtitle-dark': "#7147e2",
         'sea-white': "#c4e1f5"
       }

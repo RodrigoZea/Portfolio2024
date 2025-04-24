@@ -8,6 +8,7 @@ import Home from './routes/Home/home'
 import About from './routes/About/about'
 import Interests from './routes/Interests/interests'
 import Contact from './routes/Contact/contact'
+import ProjectsSection from './routes/PreviousWorks/works'
 
 function ContainerWithBG() {
   const { pathname } = useLocation()
@@ -25,11 +26,11 @@ function ContainerWithBG() {
       }}
     >
       <Routes>
-        <Route path="/"       element={<Home />} />
-        <Route path="/about"  element={<><Header /><About/></>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<><Header /><About/></>} />
         <Route path="/interests" element={<><Header /><Interests/></>} />
-        <Route path="/works" element={<><Header /><Interests/></>} />
-        <Route path="/contact" element={<><Header /><Contact /></>} />
+        <Route path="/works" element={<><Header /><ProjectsSection /></>} />
+        <Route path="/contact" element={<><Header /><Contact/></>} />
       </Routes>
     </div>
   )

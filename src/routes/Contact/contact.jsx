@@ -20,6 +20,9 @@ function calculateScale(width, isMobile) {
 
 export default function Contact() {
   const { t } = useTranslation();
+  const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     isMobile: window.innerWidth < 768,
@@ -55,10 +58,10 @@ export default function Contact() {
     setEmailError("");
     setStatus("Sending...");
     send(
-      "YOUR_SERVICE_ID",
-      "YOUR_TEMPLATE_ID",
+      serviceId,
+      templateId,
       { from_email: email, subject, message },
-      "YOUR_PUBLIC_KEY"
+      publicKey
     )
       .then(() => setStatus("Message sent!"))
       .catch(() => setStatus("Failed to send. Try again later."));
@@ -102,8 +105,8 @@ export default function Contact() {
         <PerspectiveCamera makeDefault position={[0, 0, 5]} />
         <Suspense fallback={null}>
           <group
-            scale={scalingFactor}
-            position={[1, -1.2, 0]}
+            scale={dimensions.isMobile ? scalingFactor*1.4 : scalingFactor*0.9}
+            position={dimensions.isMobile ? [0, -0.5, 0] :  [1, -1.2, 0]}
             rotation={[0, -Math.PI / 6, 0]}
           >
             <CharacterContact />
