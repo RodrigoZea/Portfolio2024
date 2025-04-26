@@ -14,11 +14,11 @@ import {
 } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
 
-export const currentProjectAtom = atom(0);
+export const currentProjectAtom = atom(null);
 const fontUrl =
   "https://fonts.gstatic.com/s/golostext/v4/q5uXsoe9Lv5t7Meb31EcOR9UdVTNs822plVjRQ5cEr8zXcyx.ttf";
 
-const Project = ({ project, highlighted, scale }) => {
+function Project({ project, highlighted, scale }) {
   const background = useRef();
   const groupRef = useRef();
   const bgOpacity = useMotionValue(0.4);
@@ -29,12 +29,11 @@ const Project = ({ project, highlighted, scale }) => {
 
   useFrame(({ clock }) => {
     background.current.material.opacity = bgOpacity.get();
-    groupRef.current.position.y =
-      Math.sin(clock.getElapsedTime() * 2) * 0.02;
+    groupRef.current.position.y = Math.sin(clock.getElapsedTime() * 2) * 0.02;
   });
 
   return (
-    <group scale={scale} ref={groupRef}>
+    <group ref={groupRef} scale={scale}>
       <mesh position-z={-0.06} ref={background}>
         <RoundedBox args={[2.2, 1.9, 0.1]} bevelSegments={0}>
           <meshBasicMaterial color="#5622e2" transparent opacity={0.6} />
@@ -58,7 +57,7 @@ const Project = ({ project, highlighted, scale }) => {
       </Text>
     </group>
   );
-};
+}
 
 export default function ProjectsSection() {
   const { t } = useTranslation();
@@ -67,37 +66,27 @@ export default function ProjectsSection() {
   // Responsive dims
   const [dims, setDims] = useState({ width: window.innerWidth, isMobile: window.innerWidth < 768 });
   useEffect(() => {
-    const handleResize = () => setDims({ width: window.innerWidth, isMobile: window.innerWidth < 768 });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => setDims({ width: window.innerWidth, isMobile: window.innerWidth < 768 });
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Reset selection when switching back to desktop
+  // Reset to first project on desktop
   useEffect(() => {
     if (!dims.isMobile && currentProject === null) {
       setCurrentProject(0);
     }
   }, [dims.isMobile]);
 
-  // Scale interpolation
-  const calculateScale = (width, isMobile) => {
-    const minW = 360, maxW = 1440;
-    const [minS, maxS] = isMobile ? [0.5, 1.0] : [0.8, 1.6];
-    let t = (width - minW) / (maxW - minW);
+  // Scale and spacing interpolation
+  const interpolate = (width, range) => {
+    const [wMin, wMax] = [360, 1440];
+    let t = (width - wMin) / (wMax - wMin);
     t = Math.max(0, Math.min(1, t));
-    return minS + (maxS - minS) * t;
+    return range[0] + (range[1] - range[0]) * t;
   };
-  const scaleFactor = calculateScale(dims.width, dims.isMobile);
-
-  // Spacing interpolation
-  const calculateSpacing = (width, isMobile) => {
-    const minW = 360, maxW = 1440;
-    const [minSp, maxSp] = isMobile ? [1.0, 1.8] : [0.8, 1.2];
-    let t = (width - minW) / (maxW - minW);
-    t = Math.max(0, Math.min(1, t));
-    return minSp + (maxSp - minSp) * t;
-  };
-  const spacingFactor = calculateSpacing(dims.width, dims.isMobile);
+  const scaleFactor = interpolate(dims.width, dims.isMobile ? [0.5, 1.0] : [0.8, 1.6]);
+  const spacingFactor = interpolate(dims.width, dims.isMobile ? [1.0, 1.8] : [0.8, 1.2]);
 
   const projects = [
     { title: "CSS Narancia", url: "https://codepen.io/rodrigozea/pen/bXwJeq", image: "/projects/narancia.jpg", description: t("projects.narancia") },
@@ -107,20 +96,21 @@ export default function ProjectsSection() {
     { title: "Pipe Dreams", url: "https://rodrigozea.itch.io/pipe-dreams", image: "/projects/bulletbrawl.jpg", description: t("projects.pdreams") },
     { title: "Marbles", url: "https://globalgamejam.org/games/2024/marbling-rambling-1", image: "/projects/bulletbrawl.jpg", description: t("projects.marbles") }
   ];
-  const columns = 3;
+  
+  const columns = dims.isMobile ? 2 : 3;
   const rows = Math.ceil(projects.length / columns);
 
   const selected = currentProject !== null ? projects[currentProject] : null;
-  const overlayActive = !!selected;
+  const overlayActive = selected !== null;
+  //const overlayActive = false;
 
   return (
     <Section>
-      {/* MOBILE OVERLAY (<768px) */}
+      {/* Mobile Overlay */}
       {overlayActive && dims.isMobile && (
-        <div className="md:hidden fixed inset-0 z-50 bg-purple-light flex items-start justify-center p-4">
-          <div className="w-full h-full overflow-auto rounded-lg flex flex-col items-center bg-white bg-opacity-10">
-            <button
-              className="self-end text-2xl text-purple-main hover:text-purple-dark mb-2"
+        <div className="md:hidden fixed inset-0 z-50 bg-purple-light overflow-auto">
+          <div className="p-4 bg-white bg-opacity-10 w-full h-full flex flex-col">
+            <button className="self-end mb-4 text-2xl text-purple-main hover:text-purple-dark"
               onClick={() => setCurrentProject(null)}
             >
               ✕
@@ -128,92 +118,87 @@ export default function ProjectsSection() {
             <img
               src={selected.image}
               alt={selected.title}
-              className="w-full object-cover h-1/3 rounded-lg"
+              className="w-full h-40 object-cover rounded-md mb-4"
             />
-            <div className="w-full px-6 pt-6 text-center">
+            <h2 className="text-2xl font-bold text-purple-main mb-2">
+              {selected.title}
+            </h2>
+            <p className="text-sea-white mb-4">
+              {selected.description}
+            </p>
+            <a
+              href={selected.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-yellow-200 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
+            >
+              {t("projects.visit")}
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Grid + Detail */}
+      <div className={`${overlayActive && dims.isMobile ? "hidden" : "flex"} flex-col w-full md:flex-row h-full pt-16`}>
+        {/* Detail Panel (desktop) */}
+        <div className="hidden md:block w-full md:w-1/3 xl:w-1/3 p-8 bg-white bg-opacity-10 rounded-lg overflow-auto">
+          {overlayActive && (
+            <>
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="w-full rounded-md mb-4"
+              />
               <h2 className="text-3xl font-bold text-purple-main mb-2">
                 {selected.title}
               </h2>
-              <p className="text-lg text-sea-white mb-4">
+              <p className="text-sea-white mb-4">
                 {selected.description}
               </p>
               <a
                 href={selected.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-yellow-200 text-black px-4 py-2 rounded hover:bg-yellow-300 transition text-lg"
+                className="bg-yellow-200 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
               >
                 {t("projects.visit")}
               </a>
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      )}
 
-      {/* DESKTOP LAYOUT (≥768px) */}
-      {!dims.isMobile && (
-        <div className={`${overlayActive ? "hidden md:flex" : "flex"} flex-col md:flex-row h-full pt-16`}>
-          {/* Detail panel */}
-          <div className="hidden md:block w-full md:w-1/3 xl:w-1/3 h-full overflow-auto p-8 bg-white bg-opacity-10 rounded-lg relative">
-            {overlayActive && (
-              <>
-                <img
-                  src={selected.image}
-                  alt={selected.title}
-                  className="w-full rounded-lg mb-4"
-                />
-                <h2 className="text-3xl font-bold text-purple-main mb-2">
-                  {selected.title}
-                </h2>
-                <p className="text-lg text-sea-white mb-4">
-                  {selected.description}
-                </p>
-                <a
-                  href={selected.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-yellow-200 text-black px-4 py-2 rounded hover:bg-yellow-300 transition text-lg"
-                >
-                  {t("projects.visit")}
-                </a>
-              </>
-            )}
-          </div>
-
-          {/* 3D grid */}
-          <div className="w-full md:w-2/3 xl:w-2/3 h-full flex justify-center">
-            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} style={{ width: '100%', height: '100%' }}>
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} />
-              <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-              <Suspense fallback={null}>
-                <group position={[dims.isMobile ? 0 : 0.2, 0, 0]}>
-                  {projects.map((project, idx) => {
-                    const col = idx % columns;
-                    const row = Math.floor(idx / columns);
-                    const x = (col - (columns - 1) / 2) * spacingFactor;
-                    const y = ((rows - 1) / 2 - row) * spacingFactor;
-                    return (
-                      <motion.group
-                        key={idx}
-                        position={[x, y, 0]}
-                        onClick={() => setCurrentProject(idx)}
-                      >
-                        <Project
-                          rotation-x={-Math.PI / 20}
-                          project={project}
-                          highlighted={idx === currentProject}
-                          scale={dims.isMobile ? scaleFactor * 0.8 : scaleFactor * 0.31}
-                        />
-                      </motion.group>
-                    );
-                  })}
-                </group>
-              </Suspense>
-            </Canvas>
-          </div>
+        {/* 3D Grid */}
+        <div className="w-full md:w-2/3 xl:w-2/3 flex-1 flex justify-center">
+          <Canvas style={{ width: '100%', height: '100%' }}>
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} intensity={1} />
+            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+            <Suspense fallback={null}>
+              <group position={[0, 0, 0]}>
+                {projects.map((project, idx) => {
+                  const col = idx % columns;
+                  const row = Math.floor(idx / columns);
+                  const x = (col - (columns - 1) / 2) * spacingFactor;
+                  const y = ((rows - 1) / 2 - row) * spacingFactor;
+                  return (
+                    <motion.group
+                      key={idx}
+                      position={[x, y, 0]}
+                      onClick={() => setCurrentProject(idx)}
+                    >
+                      <Project
+                        project={project}
+                        highlighted={idx === currentProject}
+                        scale={dims.isMobile ? scaleFactor * 0.8 : scaleFactor * 0.31}
+                      />
+                    </motion.group>
+                  );
+                })}
+              </group>
+            </Suspense>
+          </Canvas>
         </div>
-      )}
+      </div>
     </Section>
   );
 }
