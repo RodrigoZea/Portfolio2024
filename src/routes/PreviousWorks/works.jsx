@@ -93,6 +93,7 @@ export function ProjectsScene() {
     width: window.innerWidth,
     isMobile: window.innerWidth < 768,
   });
+  const { viewport } = useThree();
 
   useEffect(() => {
     const onResize = () => setDims({ width: window.innerWidth, isMobile: window.innerWidth < 768 });
@@ -115,7 +116,7 @@ export function ProjectsScene() {
 
   return (
     <>
-      <group position={dims.isMobile ? [0, 0, 0] : [1, 0, 0]}>
+      <group position={dims.isMobile ? [0, 0, 0] : [viewport.width / 6, 0, 0]}>
         {projects.map((project, idx) => {
           const col = idx % columns;
           const row = Math.floor(idx / columns);

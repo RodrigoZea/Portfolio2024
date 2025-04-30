@@ -8,14 +8,7 @@ export default function MascotLookAt(props) {
     const { position, y: targetY, ...rest } = props;
     const meshRef = useRef();
     const [ startAnimation, setStartAnimation ] = useState(false)
-    
-    useFrame(({ clock }) => {
-        if (meshRef.current) {
-            if(startAnimation){
-            meshRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.2 + (targetY !== undefined ? targetY : -1.6);
-            }  
-        }
-    })
+
       
     return (
         <motion.mesh
