@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useTranslation, Trans } from 'react-i18next'
+import { useThree } from '@react-three/fiber';
 import WavingMascot from '../../WavingMascot'
 import Section from '../../Section/section'
 
@@ -9,6 +10,8 @@ export function AboutScene() {
     width: window.innerWidth,
     isMobile: window.innerWidth < 768
   })
+
+const { viewport } = useThree();
 
   useEffect(() => {
     const onResize = () =>
@@ -35,7 +38,7 @@ export function AboutScene() {
     <>
       <WavingMascot
         scale={dimensions.isMobile ? scalingFactor * 1.2 : scalingFactor * 0.8}
-        position={dimensions.isMobile ? [0, 0.8, 0] : [-1.1, 0, 0]}
+        position={dimensions.isMobile ? [0, 0.8, 0] : [-viewport.width / 6, 0, 0]}
       />
     </>
   )

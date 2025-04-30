@@ -55,7 +55,7 @@ function PersistentCanvas() {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-      <Suspense fallback={<>Loading...</>}>
+      <Suspense fallback={null}>
         {Scene && <Scene />}
       </Suspense>
     </Canvas>
