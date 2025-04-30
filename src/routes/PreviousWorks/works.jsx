@@ -19,7 +19,7 @@ const projects = [
   {
     title: 'GoLit',
     url: 'https://rodrigozea.itch.io/bullet-brawl',
-    image: '/projects/bulletbrawl.jpg',
+    image: '/projects/golit.jpg',
     description: 'projects.golit',
   },
   {
@@ -37,7 +37,7 @@ const projects = [
   {
     title: 'Pipe Dreams',
     url: 'https://rodrigozea.itch.io/pipe-dreams',
-    image: '/projects/bulletbrawl.jpg',
+    image: '/projects/pdreams.png',
     description: 'projects.pdreams',
   },
   {
@@ -184,7 +184,7 @@ export default function ProjectsSection() {
               <img
                 src={selected.image}
                 alt={selected.title}
-                className="w-full h-40 object-cover rounded-md mb-4"
+                className="w-full h-60 object-cover rounded-md mb-4"
               />
               <h2 className="text-2xl font-bold text-purple-main mb-2">{selected.title}</h2>
               <p className="text-sea-white mb-4 text-sm">{t(selected.description)}</p>
@@ -210,7 +210,7 @@ export default function ProjectsSection() {
         <div className="hidden md:block fixed inset-y-0 left-0 w-1/3 p-8 pt-40 bg-purple-light overflow-auto z-10">
           {overlayActive && (
             <>
-              <img src={selected.image} alt={selected.title} className="w-full rounded-md mb-4" />
+              <img src={selected.image} alt={selected.title} className="w-full h-60 object-cover rounded-md mb-4" />
               <h2 className="text-3xl font-bold text-purple-main mb-2">{selected.title}</h2>
               <p className="text-sea-white text-sm">{t(selected.description)}</p>
               <a
